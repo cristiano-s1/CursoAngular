@@ -1,0 +1,32 @@
+<app-titulo [titulo]='titulo'></app-titulo>
+<br>
+
+<div *ngIf="alunoSelecionado">
+<p><b>Aluno selecionado: </b>{{alunoSelecionado}}.</p>
+<button class="btn btn-primary" (click)="voltarOnClick()">Voltar</button>
+</div>
+
+<div *ngIf="!alunoSelecionado">
+  <p><b>Nenhum aluno selecionado.</b></p>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Sobrenome</th>
+        <th scope="col">Telefone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aluno of alunos" 
+          style="cursor: pointer;" 
+          (click)="alunoSelectOnClick(aluno)">
+        <th scope="row">{{aluno.id}}</th>
+        <td>{{aluno.nome}}</td>
+        <td>{{aluno.sobrenome}}</td>
+        <td>{{aluno.telefone}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
