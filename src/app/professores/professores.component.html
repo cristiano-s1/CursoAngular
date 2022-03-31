@@ -1,32 +1,53 @@
-<app-titulo [titulo]='titulo'></app-titulo>
-<br>
-
-<div *ngIf="professorSelecionado">
-  <p><b>Professor selecionado: </b>{{professorSelecionado}}.</p> 
-  <button class="btn btn-primary" (click)="voltarOnClick()">Voltar</button>
+<div class="row">
+  <div class="col-sm-6" *ngIf="professorSelecionado">
+    
+    <div class="row">
+      <div class="col-sm-6">
+        <app-titulo [titulo]="'Cód: ' + professorSelecionado.id"></app-titulo>
+      </div>
+      <div style="text-align: end;">
+        <button class="btn btn-outline-danger" (click)="voltarOnClick()">Fechar</button>
+      </div>
+    </div>
+    
+    <form>
+      <div class="form-group">
+        <label for="formGroupExampleInput" class="form-label">Nome</label>
+        <input type="text" class="form-control" value="{{professorSelecionado.nome}}">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Disciplina</label>
+        <input type="text" class="form-control" value="{{professorSelecionado.disciplina}}">
+      </div>
+      <div class="form-group">
+        <hr>
+        <button class="btn btn-success">Enviar</button>
+      </div>
+    </form>
+    
   </div>
-
-  <div *ngIf="!professorSelecionado">
-    <p><b>Nenhum professor selecionado.</b></p>
-
+  
+  <div [ngClass]="{'col-sm-6': professorSelecionado, 'col-sm-12': !professorSelecionado}">
+    <app-titulo [titulo]="titulo"></app-titulo>
+    
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Id</th>
+          <th scope="col">#</th>
           <th scope="col">Nome</th>
-          <th scope="col">Sobrenome</th>
-          <th scope="col">Telefone</th>
+          <th scope="col">Disciplina</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let prof of professores" 
-            style="cursor: pointer;"
-            (click)="professorSelectOnClick(prof)">
-          <th scope="row">{{prof.id}}</th>
-          <td>{{prof.nome}}</td>
-          <td>{{prof.sobrenome}}</td>
-          <td>{{prof.telefone}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        style="cursor: pointer;"
+        (click)="professorSelectOnClick(prof)">
+        <th scope="row">{{prof.id}}</th>
+        <td>{{prof.nome}}</td>
+        <td>{{prof.disciplina}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>

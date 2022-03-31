@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Aluno } from '../models/aluno';
 
 @Component({
   selector: 'app-alunos',
@@ -8,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class AlunosComponent implements OnInit {
 
   //Propriedades
+  public alunoForm!: FormGroup; //Nome para o formulário html
   public titulo = 'Alunos';
-  public alunoSelecionado: string | undefined;
+  public alunoSelecionado: Aluno | null = null;
+  public textSimple: string | null = null;
 
   //Atribuindo objetos
   public alunos = [
@@ -18,19 +22,36 @@ export class AlunosComponent implements OnInit {
     {id: 3, nome: 'Laura', sobrenome: 'Paulo', telefone: '2223-4456' },
   ];
 
+  //Construtores
+  constructor(private fb: FormBuilder) { //FormBuilder é criador de formulário
+    this.criarForm();
+  }
+
+  ngOnInit() {
+  }
+
+  //Função para o formulário
+  criarForm(){
+    this.alunoForm = this.fb.group({ //Agrupador de campos do formlário
+      nome: ['', Validators.required], //Validators.required -> quer dizer que o campo é obrigatório
+      sobrenome: ['', Validators.required],
+      telefone: ['', Validators.required]
+    }); 
+  }
+
+  alunoSubmit(){
+    console.log(this.alunoForm.value);
+  }
+
+
   //Função
-  alunoSelectOnClick(aluno: any){
-    this.alunoSelecionado = aluno.nome;
+  alunoSelectOnClick(aluno: Aluno){
+    this.alunoSelecionado = aluno;
+    this.alunoForm.patchValue(aluno); //Atribui os valores aos campos do form ao clicar em cima de um aluno
   }
 
   voltarOnClick(){
-    this.alunoSelecionado = "";
-  }
-
-  //Construtores
-  constructor() { }
-
-  ngOnInit() {
+    this.alunoSelecionado = null;
   }
 
 }

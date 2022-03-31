@@ -9,6 +9,9 @@ import { PerfilComponent } from './Perfil/Perfil.component';
 import { DashboardComponent } from './Dashboard/Dashboard.component';
 import { NavComponent } from './nav/nav.component';
 import { TituloComponent } from './titulo/titulo.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [						
@@ -22,7 +25,11 @@ import { TituloComponent } from './titulo/titulo.component';
    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BsDropdownModule.forRoot(),
+    BrowserAnimationsModule,
+    FormsModule, //Pegar o valor de uma variavel
+    ReactiveFormsModule //Criar formulário
   ],
   providers: [],
   bootstrap: [AppComponent]
