@@ -12,6 +12,7 @@ import { TituloComponent } from './titulo/titulo.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [						
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule, //Pegar o valor de uma variavel
-    ReactiveFormsModule //Criar formulário
+    ReactiveFormsModule, //Criar formulário
+    ModalModule.forRoot() 
   ],
   providers: [],
   bootstrap: [AppComponent]
